@@ -25,17 +25,18 @@ export const sliderItems = [
 export const categories = [
   {
     id: 1,
-    img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    img: "http://cdn.shopify.com/s/files/1/0497/3713/8330/products/roller-skates-socks-362841_1200x1200.jpg?v=1625041317",
     title: "SKATES",
   },
   {
     id: 2,
-    img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+
+    img: "https://media1.popsugar-assets.com/files/thumbor/tX_DQQiTq84AmTW0_fnVgxdLsxI/0x181:1456x1637/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2020/07/02/837/n/1922729/d5ae3c805efe3014eb6d46.82525125_/i/oumi-janta-roller-skating-videos-on-instagram.jpg",
     title: "APPAREL",
   },
   {
     id: 3,
-    img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    img: "https://media.cntraveler.com/photos/60a4263413475a76aa9426cc/master/w_2848,h_4272,c_limit/FUN%20Guide%20to%20Rollerskating_Shayna_IMG_8450.JPG",
     title: "PARTS",
   },
 ];
@@ -43,34 +44,34 @@ export const categories = [
 export const popularProducts = [
   {
     id: 1,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    img: "https://cdn.shopify.com/s/files/1/1059/0476/products/MOXI-Beach-Bunny-Skate-Blue-Bayside-Blades_1024x1024.jpg?v=1577069087",
   },
   {
     id: 2,
-    img: "https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRfSgj4mGOAjoRX6z5GvSiaSwrbfunzur30ZzqhlssYfOyqPILbtmCM_joIUDcmUAD99s&usqp=CAU",
   },
   {
     id: 3,
-    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    img: "https://cdn.shopify.com/s/files/1/1059/0476/products/Moxi-Custom-Jack-Pineapple-Falcon-Plus-Skate-Bayside-Blades_1024x1024.jpg?v=1541049827",
   },
   {
     id: 4,
-    img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+    img: "https://cdn.shopify.com/s/files/1/1902/1655/products/chaya-melrose-love-is-love-roller-skates-3_891x.jpg?v=1605257431",
   },
   {
     id: 5,
-    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+    img: "https://cdn.webshopapp.com/shops/226304/files/144989621/image.jpg",
   },
   {
     id: 6,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    img: "http://cdn.shopify.com/s/files/1/1059/0476/products/moxi-lolly-boot-black_grande.png?v=1624427746",
   },
   {
     id: 7,
-    img: "https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+    img: "https://cdn.skatepro.com/product/440/sfr-vision-skate-bag.jpg",
   },
   {
     id: 8,
-    img: "https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
+    img: "https://cdn.shopify.com/s/files/1/2458/4047/products/Suregrip_Avanti_Aluminium_Plate.jpg?v=1571609564",
   },
 ];

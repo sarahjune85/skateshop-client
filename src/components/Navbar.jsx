@@ -63,12 +63,19 @@ const MenuItem = styled.div`
   margin-left: 25px;
 `;
 
+const Image = styled.img`
+  width: 45px;
+  opacity: 0.8;
+`;
+
 const Navbar = () => {
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Language>EN</Language>
+          <Language>
+            <Image src="/images/skate-logo.png" />
+          </Language>
           <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 20, padding: "5px" }} />

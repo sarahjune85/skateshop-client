@@ -6,9 +6,10 @@ import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   background-color: #fff0d1;
+
   position: relative;
   overflow: hidden;
   ${mobile({ display: "none" })}
@@ -17,7 +18,8 @@ const Container = styled.div`
 const Arrow = styled.div`
   width: 50px;
   height: 50px;
-  background-color: #ffffff;
+  background-color: #ffdaf9;
+  box-shadow: 3px 3px #888888;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -51,15 +53,10 @@ const Slide = styled.div`
 
 const ImgContainer = styled.div`
   height: 80%;
-  /* padding: 50px; */
   flex: 1;
-  /* text-align: center; */
 `;
 
 const Image = styled.img`
-  /* padding: 17px; */
-  /* height: 80%; */
-  /* max-width: 50vw; */
   width: 100%;
   height: 100%;
   object-fit: scale-down;
@@ -68,10 +65,6 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   flex: 1;
   padding: 50px;
-`;
-
-const Title = styled.h1`
-  font-size: 70px;
 `;
 
 const Desc = styled.p`
@@ -86,6 +79,12 @@ const Button = styled.button`
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
+`;
+const Title = styled.img`
+  width: 90%;
+  margin-right: 50px;
+  height: 100%;
+  object-fit: scale-down;
 `;
 
 const Slider = () => {
@@ -112,7 +111,7 @@ const Slider = () => {
               <Image src={item.img} />
             </ImgContainer>
             <InfoContainer>
-              <Title>{item.title}</Title>
+              <Title src={item.title} />
               <Desc>{item.desc}</Desc>
               <Button>SHOP NOW</Button>
             </InfoContainer>

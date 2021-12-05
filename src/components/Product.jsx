@@ -4,6 +4,7 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const Info = styled.div`
   opacity: 0;
@@ -65,21 +66,38 @@ const Icon = styled.div`
   }
 `;
 
+const Title = styled.p`
+  position: absolute;
+  top: 15px;
+  font-weight: 700;
+`;
+
+const Price = styled.p`
+  position: absolute;
+  bottom: 15px;
+  font-weight: 700;
+  font-size: 20px;
+`;
+
 const Product = ({ item }) => {
   return (
     <Container>
       <Circle />
-      <Image src={item.img} />
+      <Image src={item.image} />
       <Info>
         <Icon>
           <ShoppingCartOutlined />
         </Icon>
         <Icon>
-          <SearchOutlined />
+          <Link to={`/product/${item._id}`}>
+            <SearchOutlined />
+          </Link>
         </Icon>
         <Icon>
           <FavoriteBorderOutlined />
         </Icon>
+        <Title>{item.title}</Title>
+        <Price>${item.price}</Price>
       </Info>
     </Container>
   );

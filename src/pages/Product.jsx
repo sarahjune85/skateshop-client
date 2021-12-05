@@ -4,6 +4,11 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@material-ui/icons";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router";
+import { useState, useEffect } from "react";
+import { publicRequest } from "../requestMethods";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -19,7 +24,8 @@ const ImgContainer = styled.div`
 const Image = styled.img`
   width: 100%;
   height: 90vh;
-  object-fit: scale-down;
+  object-fit: contain;
+  min-width: 100px;
   align-items: center;
   ${mobile({ height: "40vh" })}
 `;
@@ -36,7 +42,7 @@ const Title = styled.h1`
 
 const Description = styled.p`
   margin: 20px 0px;
-  font-size: 20px;
+  font-size: 16px;
   ${mobile({ fontSize: "16px" })}
 `;
 
@@ -71,8 +77,8 @@ const FilterTitle = styled.span`
 `;
 
 const FilterColor = styled.div`
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   border-radius: 50%;
   background-color: ${(props) => props.color};
   margin: 0px 5px;
@@ -90,7 +96,6 @@ const FilterSizeOption = styled.option`
 `;
 
 const AddContainer = styled.div`
-  width: 50%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,7 +121,7 @@ const Amount = styled.span`
 `;
 const Button = styled.button`
   padding: 15px;
-  font-size: 22px;
+  font-size: 20px;
   border-radius: 10px;
   border: none;
   background-color: #ff90a3b7;
@@ -129,52 +134,76 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + id);
+        // console.log(res.data);
+        setProduct(res.data);
+      } catch {}
+    };
+    getProduct();
+  }, [id]);
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleClick = () => {
+    dispatch(addProduct({ ...product, quantity, color, size }));
+  };
+
   return (
     <Container>
-      <Navbar />
       <Announcement />
+      <Navbar />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://cdn.shopify.com/s/files/1/0036/4950/3321/products/image_0c32b492-12e8-4460-bb0c-854ed12b0a66_2000x.png?v=1619373254" />
+          <Image src={product.image} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Moxi Lolly</Title>
-          <Description>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum blanditiis
-            alias nam quam accusamus earum saepe minus. Corporis quo, ipsa delectus
-            explicabo consectetur iste iure quia quisquam repellendus officia
-            exercitationem?
-          </Description>
-          <Price>$20</Price>
+          <Title>{product.title}</Title>
+          <Description>{product.description}</Description>
+          <Price>$ {product.price}</Price>
 
           <FilteredContainer>
             <ColorSelector>
               <FilterTitle>Color: </FilterTitle>
-              <FilterColor color="#4ea7ff" />
-              <FilterColor color="#ff69b4" />
-              <FilterColor color="#663399" />
-              <FilterColor color="#ff4500" />
-              <FilterColor color="#32cd80" />
+              {product.color?.map((c) => (
+                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+              ))}
             </ColorSelector>
             <SizeSelector>
               <FilterTitle>Size: </FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>4</FilterSizeOption>
-                <FilterSizeOption>5</FilterSizeOption>
-                <FilterSizeOption>6</FilterSizeOption>
-                <FilterSizeOption>7</FilterSizeOption>
-                <FilterSizeOption>8</FilterSizeOption>
-                <FilterSizeOption>9</FilterSizeOption>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
+                {product.size?.map((s) => (
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                ))}
               </FilterSize>
             </SizeSelector>
           </FilteredContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove
+                onClick={() => handleQuantity("dec")}
+                style={{ cursor: "pointer" }}
+              />
+              <Amount>{quantity}</Amount>
+              <Add onClick={() => handleQuantity("inc")} style={{ cursor: "pointer" }} />
             </AmountContainer>
-            <Button>Add To Cart</Button>
+            <Button onClick={handleClick}>Add To Cart</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

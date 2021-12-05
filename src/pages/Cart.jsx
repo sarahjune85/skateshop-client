@@ -4,6 +4,7 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
+import { useSelector } from "react-redux";
 
 const Container = styled.div``;
 
@@ -69,7 +70,6 @@ const ProductDetail = styled.div`
 
 const Image = styled.img`
   width: 200px;
-  /* ${mobile({ maxWidth: "100px" })} */
 `;
 
 const Details = styled.div`
@@ -107,21 +107,16 @@ const ProductAmountContainer = styled.div`
 `;
 
 const ProductAmount = styled.div`
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   margin: 5px;
+  color: #3d3d3da0;
   ${mobile({ margin: "5px 15px" })}
 `;
 
 const ProductPrice = styled.div`
-  font-size: 2rem;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
-`;
-
-const Hr = styled.hr`
-  background-color: #d3d3d399;
-  border: none;
-  height: 1px;
+  font-size: 1.8rem;
+  color: #3d3d3d;
+  ${mobile({ marginBottom: "20px" })};
 `;
 
 const Summary = styled.div`
@@ -129,7 +124,7 @@ const Summary = styled.div`
   border: 0.5px solid #d3d3d3a0;
   border-radius: 10px;
   padding: 15px;
-  height: 50vh;
+  height: fit-content;
 `;
 
 const SummaryTitle = styled.h1`
@@ -164,79 +159,61 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+
   return (
     <Container>
-      <Navbar />
       <Announcement />
+      <Navbar />
+
       <Wrapper>
         <Title>Your Cart</Title>
         <Top>
           <TopButton>Continue Shopping</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag ({cart.products.length})</TopText>
             <TopText>Your Wishlist</TopText>
           </TopTexts>
           <TopButton type="filled">Checkout Now</TopButton>
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbM9Py4epHz6g_gh6JhFk09P_Bxk8JHHDeGg&usqp=CAU" />
-                <Details>
-                  <ProductName>
-                    <b>Item: </b>Radar Donut Wheels
-                  </ProductName>
-                  <ProductId>
-                    <b>ID: </b>21544465
-                  </ProductId>
-                  <ProductColor color="peachpuff" />
-                  <ProductSize>
-                    <b>Size: </b>62mm
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 45</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO37_B_i95Yp8heEyWT3KuLdAuA9ISn8FtGGGi9OzskwkZSs_ybwwfxWeOvcwNBD4Yqs0&usqp=CAU" />
-                <Details>
-                  <ProductName>
-                    <b>Item: </b>Sure-Grip Fame Artistic
-                  </ProductName>
-                  <ProductId>
-                    <b>ID: </b>21524534
-                  </ProductId>
-                  <ProductColor color="#3280cd" />
-                  <ProductSize>
-                    <b>Size: </b>57mm
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 35</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {cart.products.map((product) => (
+              <Product>
+                <ProductDetail>
+                  <Image src={product.image} />
+                  <Details>
+                    <ProductName>
+                      <b>Item: </b>
+                      {product.title}
+                    </ProductName>
+                    <ProductId>
+                      <b>ID: </b>
+                      {product._id}
+                    </ProductId>
+                    <ProductColor color={product.color} />
+                    <ProductSize>
+                      <b>Size: </b>
+                      {product.size}
+                    </ProductSize>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmountContainer>
+                    <Add />
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <Remove />
+                  </ProductAmountContainer>
+                  <ProductPrice>${product.price * product.quantity}</ProductPrice>
+                </PriceDetail>
+              </Product>
+            ))}
           </Info>
           <Summary>
             <SummaryTitle>Order Summary</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 70</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -248,7 +225,7 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total:</SummaryItemText>
-              <SummaryItemPrice>$ 70</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT</Button>
           </Summary>

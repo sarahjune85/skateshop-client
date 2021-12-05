@@ -3,7 +3,7 @@ import Announcement from "../components/Announcement";
 import Categories from "../components/Categories";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import PopularProducts from "../components/PopularProducts";
+import Products from "../components/Products";
 import Slider from "../components/Slider";
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
       <Navbar />
       <Slider />
       <Categories />
-      <PopularProducts />
+      <Products />
       <Footer />
     </div>
   );

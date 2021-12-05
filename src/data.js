@@ -2,14 +2,14 @@ export const sliderItems = [
   {
     id: 1,
     img: "https://i.imgur.com/m7UpTBU.png",
-    title: "SUMMER SALE",
+    title: "/images/slide-1-heading.png",
     desc: "Get 50% off all Impala Skates!",
     bg: "f0fafb",
   },
   {
     id: 2,
-    img: "https://www.riverroll.com/wp-content/uploads/2020/12/pink_main.png",
-    title: "NEW SKATE BAGS",
+    img: "/images/pink_bag.png",
+    title: "/images/slide-2-heading.png",
     desc: "Carry your beloved skates in style!",
     bg: "fbf0f4",
   },
@@ -27,17 +27,19 @@ export const categories = [
     id: 1,
     img: "http://cdn.shopify.com/s/files/1/0497/3713/8330/products/roller-skates-socks-362841_1200x1200.jpg?v=1625041317",
     title: "SKATES",
+    cat: "skates",
   },
   {
     id: 2,
-
     img: "https://media1.popsugar-assets.com/files/thumbor/tX_DQQiTq84AmTW0_fnVgxdLsxI/0x181:1456x1637/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2020/07/02/837/n/1922729/d5ae3c805efe3014eb6d46.82525125_/i/oumi-janta-roller-skating-videos-on-instagram.jpg",
     title: "APPAREL",
+    cat: "apparel",
   },
   {
     id: 3,
     img: "https://media.cntraveler.com/photos/60a4263413475a76aa9426cc/master/w_2848,h_4272,c_limit/FUN%20Guide%20to%20Rollerskating_Shayna_IMG_8450.JPG",
     title: "PARTS",
+    cat: "parts",
   },
 ];
 

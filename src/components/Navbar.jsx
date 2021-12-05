@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Badge } from "@material-ui/core";
+// import Badge from "@mui/material";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { mobile } from "../responsive";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  height: 70px;
-  background-color: #fff88fc5;
-  ${mobile({ height: "80px", width: "100vw" })}
+  height: 90px;
+  background-color: #ff90a32e;
+  ${mobile({ height: "90px", width: "100vw" })}
 `;
 
 const Wrapper = styled.div`
@@ -27,7 +30,7 @@ const Left = styled.div`
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
-  ${mobile({ display: "none" })}
+  ${mobile({})}
 `;
 
 const SearchContainer = styled.div`
@@ -36,7 +39,7 @@ const SearchContainer = styled.div`
   align-items: center;
   margin-left: 25px;
   padding: 5px;
-  ${mobile({ marginLeft: "10px" })}
+  ${mobile({ display: "none" })}
 `;
 
 const Input = styled.input`
@@ -50,11 +53,9 @@ const Center = styled.div`
   text-align: center;
 `;
 
-const Logo = styled.h1`
-  font-size: 40px;
-  font-weight: bold;
-  color: #ff7a7ad3;
-  ${mobile({ fontSize: "24px" })}
+const Logo = styled.img`
+  height: 70px;
+  ${mobile({ height: "50px", width: "200px" })}
 `;
 
 const Right = styled.div`
@@ -62,7 +63,15 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center", marginRight: "10px" })}
+  ${mobile({
+    flex: 2,
+    justifyContent: "center",
+    marginRight: "10px",
+    flexDirection: "column",
+    marginLeft: "10px",
+    lineHeight: "25px",
+    alignItems: "flex-end",
+  })}
 `;
 
 const MenuItem = styled.div`
@@ -72,35 +81,36 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
-const Image = styled.img`
-  width: 45px;
-  opacity: 0.8;
-`;
-
 const Navbar = () => {
+  // grab state of cart:
+  const quantity = useSelector((state) => state.cart.quantity);
+  // console.log(quantity);
+
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Language>
-            <Image src="/images/skate-logo.png" />
-          </Language>
+          <Language>EN</Language>
           <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 20, padding: "5px" }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>GNRC Skates</Logo>
+          <Link to="/">
+            <Logo src="/images/GNRC-wide.png" />
+          </Link>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>LOGIN</MenuItem>
-          <MenuItem>
-            <Badge badgeContent={4} color="secondary">
-              <ShoppingCartOutlined />
-            </Badge>
-          </MenuItem>
+          <Link to="/cart">
+            <MenuItem>
+              <Badge color="secondary" badgeContent={quantity}>
+                <ShoppingCartOutlined />
+              </Badge>
+            </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>

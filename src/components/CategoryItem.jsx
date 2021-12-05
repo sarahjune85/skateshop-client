@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   flex: 1;
   margin: 3px;
-  height: 70vh;
+  height: 90vh;
   position: relative;
 `;
 
@@ -25,6 +26,10 @@ const Info = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff34;
+  &:hover {
+    background-color: transparent;
+  }
 `;
 
 const Title = styled.h1`
@@ -38,22 +43,29 @@ const Title = styled.h1`
 const Button = styled.button`
   border: none;
   font-weight: bold;
+  font-size: 1rem;
   letter-spacing: 0.4rem;
   padding: 15px;
   background-color: #fff6c4a6;
   cursor: pointer;
   border-radius: 0.5rem;
+  &:hover {
+    background-color: #fff88fc5;
+    color: #ffffff;
+  }
   ${mobile({ fontSize: "1rem" })}
 `;
 
 const CategoryItem = ({ item }) => {
   return (
     <Container>
-      <Image src={item.img} />
-      <Info>
-        <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
-      </Info>
+      <Link to={`/products/${item.cat}`}>
+        <Image src={item.img} />
+        <Info>
+          <Title>{item.title}</Title>
+          <Button>SHOP NOW</Button>
+        </Info>
+      </Link>
     </Container>
   );
 };

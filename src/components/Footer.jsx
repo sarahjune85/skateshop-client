@@ -9,6 +9,7 @@ import {
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -20,12 +21,14 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
 `;
 
-const Logo = styled.h1``;
-const Desc = styled.p`
-  margin: 20px 0px;
+const Logo = styled.img`
+  width: 200px;
+  margin: 20px 30px;
 `;
 
 const SocialContainer = styled.div`
@@ -41,17 +44,24 @@ const SocialIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 25px;
+  padding: 3px;
+  margin: 5px;
 `;
 
 const Center = styled.div`
   flex: 1;
+  height: auto;
   padding: 20px;
+  font-size: small;
   ${mobile({ display: "none" })}
 `;
 
 const Title = styled.h3`
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  color: #ff90a2;
+  font-size: 1.4rem;
+  font-weight: 700;
 `;
 
 const List = styled.ul`
@@ -70,11 +80,12 @@ const ListItem = styled.li`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+  font-size: small;
   ${mobile({ backgroundColor: "#cefcffb0" })}
 `;
 
 const ContactItem = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
 `;
@@ -87,12 +98,9 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>GNRC Skates</Logo>
-        <Desc>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, quos dolorum
-          dignissimos porro saepe ut necessitatibus consequuntur dolorem reprehenderit,
-          dolore explicabo facere voluptatum! Nisi ratione ipsam sapiente odit nulla ab.
-        </Desc>
+        <Link to="/">
+          <Logo src="/images/GNRC.png" />
+        </Link>
         <SocialContainer>
           <SocialIcon color="ff90a2">
             <Facebook />
@@ -109,17 +117,17 @@ const Footer = () => {
         </SocialContainer>
       </Left>
       <Center>
-        <Title>Useful Links</Title>
+        <Title>Site Directory</Title>
         <List>
           <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
+          <ListItem>Terms</ListItem>
           <ListItem>Skates</ListItem>
-          <ListItem>Apparel</ListItem>
+          <ListItem>Order Tracking</ListItem>
           <ListItem>Parts</ListItem>
           <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
+          <ListItem>Apparel</ListItem>
           <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
+          <ListItem>Cart</ListItem>
         </List>
       </Center>
       <Right>

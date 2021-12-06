@@ -2,14 +2,13 @@ import { ArrowLeftRounded, ArrowRightRounded } from "@material-ui/icons";
 import styled from "styled-components";
 import { useState } from "react";
 import { sliderItems } from "../data";
-import { mobile } from "../responsive";
+import { mobile, halfScreen } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
   height: 90vh;
   display: flex;
   background-color: #fff0d1;
-
   position: relative;
   overflow: hidden;
   ${mobile({ display: "none" })}
@@ -45,7 +44,6 @@ const Wrapper = styled.div`
 
 const Slide = styled.div`
   width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};

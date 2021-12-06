@@ -6,6 +6,7 @@ import { mobile } from "../responsive";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/userRedux";
+import { clearCart } from "../redux/cartRedux";
 
 const Container = styled.div`
   height: 90px;
@@ -25,12 +26,6 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-`;
-
-const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
-  ${mobile({})}
 `;
 
 const SearchContainer = styled.div`
@@ -83,19 +78,22 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser);
+  const cart = useSelector((state) => state.cart);
   const quantity = useSelector((state) => state.cart.quantity);
   const dispatch = useDispatch();
+  // console.log(user);
+  // console.log(cart);
 
   // reducer
   const handleLogout = () => {
     dispatch(logout(user));
+    dispatch(clearCart(cart));
   };
 
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Language>EN</Language>
           <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 20, padding: "5px" }} />
@@ -108,23 +106,54 @@ const Navbar = () => {
         </Center>
         <Right>
           {user ? (
-            <span>Hello {user.others.username}!</span>
+            <span>{""}</span>
           ) : (
             <MenuItem>
-              <Link to="/register">REGISTER</Link>
+              <Link
+                to="/register"
+                style={{
+                  color: "#ff5a78",
+                  fontSize: 16,
+                  padding: "5px",
+                  textDecoration: "none",
+                }}
+              >
+                REGISTER
+              </Link>
             </MenuItem>
           )}
           <MenuItem>
             {user ? (
-              <span onClick={handleLogout}>LOGOUT</span>
+              <span onClick={handleLogout}>
+                LOGOUT{" "}
+                {user.others.username.charAt(0).toUpperCase() +
+                  user.others.username.slice(1)}
+              </span>
             ) : (
-              <Link to="/login">LOGIN</Link>
+              <Link
+                to="/login"
+                style={{
+                  color: "#ff5a78",
+                  fontSize: 16,
+                  padding: "5px",
+                  textDecoration: "none",
+                }}
+              >
+                LOGIN
+              </Link>
             )}
           </MenuItem>
           <Link to="/cart">
             <MenuItem>
               <Badge color="secondary" badgeContent={quantity}>
-                <ShoppingCartOutlined />
+                <ShoppingCartOutlined
+                  style={{
+                    color: "#ff5a7886",
+                    fontSize: 28,
+                    padding: "5px",
+                    textDecoration: "none",
+                  }}
+                />
               </Badge>
             </MenuItem>
           </Link>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { mobile, halfScreen } from "../responsive";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -7,6 +7,7 @@ const Container = styled.div`
   margin: 3px;
   height: 90vh;
   position: relative;
+  ${halfScreen({ padding: "0px", flexDirection: "column" })}
 `;
 
 const Image = styled.img`
@@ -33,17 +34,18 @@ const Info = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 3.5vw;
   color: white;
   margin-bottom: 20px;
   letter-spacing: 0.4rem;
-  ${mobile({ fontSize: "2rem" })}
+  ${mobile({ fontSize: "5vw" })}
+  ${halfScreen({ padding: "0px", flexDirection: "column", fontSize: "7vw" })}
 `;
 
 const Button = styled.button`
   border: none;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1vw;
   letter-spacing: 0.4rem;
   padding: 15px;
   background-color: #fff6c4a6;

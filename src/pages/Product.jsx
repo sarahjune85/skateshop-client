@@ -163,6 +163,7 @@ const Product = () => {
 
   const handleClick = () => {
     dispatch(addProduct({ ...product, quantity, color, size }));
+    alert(`${quantity} ${product.title} added to cart`);
   };
 
   return (

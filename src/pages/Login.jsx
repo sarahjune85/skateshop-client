@@ -3,7 +3,8 @@ import { useState } from "react";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/apiUtils";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+// import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -87,17 +88,13 @@ const Link = styled.a`
   color: #383838b8;
 `;
 
-const Error = styled.div`
-  margin-top: 10px;
-  color: red;
-`;
-
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
+  const history = useHistory();
 
   // Password toggle handler
   const togglePassword = () => {
@@ -114,16 +111,18 @@ const Login = () => {
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+          <Input
+            placeholder="Username"
+            type="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <Input
             placeholder="Password"
             type={passwordShown ? "text" : "password"}
             onChange={(e) => setPassword(e.target.value)}
           />{" "}
         </Form>
-        <VisibilityButton onClick={togglePassword}>
-          <VisibilityOutlinedIcon />
-        </VisibilityButton>
+        <VisibilityButton onClick={togglePassword}>Show Password</VisibilityButton>
         <Button onClick={handleClick} disabled={isFetching}>
           LOGIN
         </Button>

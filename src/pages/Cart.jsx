@@ -191,6 +191,8 @@ const Cart = () => {
     stripeToken && makeRequest();
   }, [stripeToken, cart, history]);
 
+  ///////TODO: clear cart function////////////
+
   console.log(stripeToken);
 
   return (

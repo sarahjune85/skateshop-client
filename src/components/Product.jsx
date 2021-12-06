@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import {
-  FavoriteBorderOutlined,
-  SearchOutlined,
-  ShoppingCartOutlined,
-} from "@material-ui/icons";
+import { SearchOutlined } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
 const Info = styled.div`
@@ -30,19 +26,10 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: #f5fbfd; */
   position: relative;
   &:hover ${Info} {
     opacity: 1;
   }
-`;
-
-const Circle = styled.div`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
 `;
 
 const Image = styled.img`
@@ -52,8 +39,8 @@ const Image = styled.img`
 `;
 
 const Icon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: white;
   display: flex;
@@ -62,8 +49,8 @@ const Icon = styled.div`
   margin: 10px;
   transition: all 0.5s ease;
   &:hover {
-    background-color: #f7a3ff;
-    transform: scale(1.2);
+    background-color: #ffeea3;
+    transform: scale(1.6);
   }
 `;
 
@@ -83,20 +70,19 @@ const Price = styled.p`
 const Product = ({ item }) => {
   return (
     <Container>
-      <Circle />
       <Image src={item.image} />
       <Info>
         <Icon>
-          <ShoppingCartOutlined />
-        </Icon>
-        <Icon>
           <Link to={`/product/${item._id}`}>
-            <SearchOutlined />
+            <SearchOutlined
+              style={{
+                color: "#ff5a7886",
+                fontSize: 35,
+              }}
+            />
           </Link>
         </Icon>
-        <Icon>
-          <FavoriteBorderOutlined />
-        </Icon>
+
         <Title>{item.title}</Title>
         <Price>${item.price}</Price>
       </Info>

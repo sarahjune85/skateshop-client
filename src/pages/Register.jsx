@@ -19,10 +19,12 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
+  text-align: center;
   width: 40%;
   padding: 20px;
   background-color: white;
   border-radius: 20px;
+  box-shadow: 9px 9px 7px -4px rgba(0, 0, 0, 0.1);
   ${mobile({ width: "75%" })}
 `;
 
@@ -65,33 +67,22 @@ const Button = styled.button`
 
 const Register = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
-  // const history = useHistory();
-  // const emailRef = useRef();
-  // const passwordRef = useRef();
-  // const usernameRef = useRef();
-
-  // const handleStart = () => {
-  //   setEmail(emailRef.current.value);
-  // };
+  const history = useHistory();
 
   const handleClick = (e) => {
     e.preventDefault();
-    register(dispatch, { username, email, password });
+    if (password === confirmPassword) {
+      register(dispatch, { username, email, password });
+      history.push("/");
+    } else {
+      alert("Passwords do not match!");
+    }
   };
-
-  // const handleFinish = async (e) => {
-  //   e.preventDefault();
-  //   setPassword(passwordRef.current.value);
-  //   setUsername(usernameRef.current.value);
-  //   try {
-  //     await axios.post("auth/register", { email, username, password });
-  //     history.push("/login");
-  //   } catch (err) {}
-  // };
 
   return (
     <Container>
@@ -110,10 +101,13 @@ const Register = () => {
           />
           <Input
             placeholder="Password"
-            type="password"
+            // type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          {/* <Input placeholder="Confirm Password" type="confirmPassword" /> */}
+          <Input
+            placeholder="Confirm Password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
         </Form>
         <Agreement>
           By clicking submit, I consent to processing my data in accordance with the{" "}

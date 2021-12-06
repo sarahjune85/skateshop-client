@@ -3,7 +3,7 @@ export const sliderItems = [
     id: 1,
     img: "https://i.imgur.com/m7UpTBU.png",
     title: "/images/slide-1-heading.png",
-    desc: "Get 50% off all Impala Skates!",
+    desc: "Get 20% off all Chaya Skates!",
     bg: "f0fafb",
   },
   {

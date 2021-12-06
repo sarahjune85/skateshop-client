@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/apiUtils";
+import Announcement from "../components/Announcement";
+import Navbar from "../components/Navbar";
 
 const Container = styled.div`
-  width: 100vw;
   height: 100vh;
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+  background: linear-gradient(rgba(253, 179, 179, 0.651), rgba(255, 254, 170, 0.5)),
     url("https://media.vogue.co.uk/photos/5f35103e3771316bf98bb858/master/w_1920,h_1280,c_limit/Playtone-108.jpg")
-      center;
+      no-repeat fixed center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -85,39 +86,43 @@ const Register = () => {
   };
 
   return (
-    <Container>
-      <Wrapper>
-        <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input
-            placeholder="Username"
-            type="username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Input
-            placeholder="Email"
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            placeholder="Password"
-            // type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Input
-            placeholder="Confirm Password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </Form>
-        <Agreement>
-          By clicking submit, I consent to processing my data in accordance with the{" "}
-          <b>PRIVACY POLICY</b>.
-        </Agreement>
-        <Button onClick={handleClick} disabled={isFetching}>
-          SUBMIT
-        </Button>
-      </Wrapper>
-    </Container>
+    <div>
+      <Announcement />
+      <Navbar />
+      <Container>
+        <Wrapper>
+          <Title>CREATE AN ACCOUNT</Title>
+          <Form>
+            <Input
+              placeholder="Username"
+              type="username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Input
+              placeholder="Email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              placeholder="Password"
+              // type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Input
+              placeholder="Confirm Password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </Form>
+          <Agreement>
+            By clicking submit, I consent to processing my data in accordance with the{" "}
+            <b>PRIVACY POLICY</b>.
+          </Agreement>
+          <Button onClick={handleClick} disabled={isFetching}>
+            SUBMIT
+          </Button>
+        </Wrapper>
+      </Container>
+    </div>
   );
 };
 

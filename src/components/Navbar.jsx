@@ -1,4 +1,3 @@
-import React, { setState } from "react";
 import styled from "styled-components";
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
@@ -81,8 +80,6 @@ const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   const quantity = useSelector((state) => state.cart.quantity);
   const dispatch = useDispatch();
-  // console.log(user);
-  // console.log(cart);
 
   // reducer
   const handleLogout = () => {
@@ -124,7 +121,15 @@ const Navbar = () => {
           )}
           <MenuItem>
             {user ? (
-              <span onClick={handleLogout}>
+              <span
+                onClick={handleLogout}
+                style={{
+                  color: "#ff5a78",
+                  fontSize: 16,
+                  padding: "5px",
+                  textDecoration: "none",
+                }}
+              >
                 LOGOUT{" "}
                 {user.others.username.charAt(0).toUpperCase() +
                   user.others.username.slice(1)}

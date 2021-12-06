@@ -11,9 +11,9 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h1`
-  font-size: 70px;
-  margin-bottom: 20px;
+const Title = styled.img`
+  width: 42vw;
+  margin-bottom: 50px;
 `;
 
 const Desc = styled.div`
@@ -55,7 +55,7 @@ const Button = styled.button`
 const MailingList = () => {
   return (
     <Container>
-      <Title>Mailing List</Title>
+      <Title src="/images/mailing-list.png" />
       <Desc>Sign up to our mailing list for news & special offers!</Desc>
       <InputContainer>
         <Input placeholder="Your email" />

@@ -11,6 +11,12 @@ import Slider from "../components/Slider";
 const Container = styled.div`
   width: 90%;
   margin: 0 auto;
+  text-align: center;
+`;
+
+const BestSellers = styled.img`
+  margin: 20px;
+  margin-top: 50px;
 `;
 
 const Home = () => {
@@ -21,6 +27,7 @@ const Home = () => {
       <Slider />
       <Container>
         <Categories />
+        <BestSellers src="/images/bestsellers.png" />
         <Products />
       </Container>
       <MailingList />

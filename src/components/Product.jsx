@@ -46,6 +46,7 @@ const Circle = styled.div`
 `;
 
 const Image = styled.img`
+  object-fit: scale-down;
   height: 75%;
   z-index: 2;
 `;

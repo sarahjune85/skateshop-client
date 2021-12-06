@@ -62,6 +62,7 @@ const Title = styled.h3`
   color: #ff90a2;
   font-size: 1.4rem;
   font-weight: 700;
+  text-align: center;
 `;
 
 const List = styled.ul`
@@ -75,19 +76,21 @@ const List = styled.ul`
 const ListItem = styled.li`
   width: 50%;
   margin-bottom: 10px;
+  text-align: center;
 `;
 
 const Right = styled.div`
   flex: 1;
   padding: 20px;
   font-size: small;
+  text-align: center;
   ${mobile({ backgroundColor: "#cefcffb0" })}
 `;
 
 const ContactItem = styled.div`
   margin-bottom: 10px;
   display: flex;
-  align-items: center;
+  justify-content: center;
 `;
 
 const Payment = styled.img`
@@ -133,13 +136,16 @@ const Footer = () => {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <RoomOutlined style={{ marginRight: "10px" }} /> 123 Roller St, Boogietown 34567
+          <RoomOutlined style={{ marginRight: "10px", color: "#ff90a2" }} /> 123 Roller
+          St, Boogietown 34567
         </ContactItem>
         <ContactItem>
-          <PhoneOutlined style={{ marginRight: "10px" }} /> +61 234 567 890
+          <PhoneOutlined style={{ marginRight: "10px", color: "#ff90a2" }} /> +61 234 567
+          890
         </ContactItem>
         <ContactItem>
-          <MailOutlined style={{ marginRight: "10px" }} /> contact@gnrc.skates
+          <MailOutlined style={{ marginRight: "10px", color: "#ff90a2" }} />{" "}
+          contact@gnrc.skates
         </ContactItem>
         <Payment src="https://i.imgur.com/rC4b0xf.png" />
       </Right>

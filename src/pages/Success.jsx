@@ -4,11 +4,7 @@ import { useLocation } from "react-router";
 import { userRequest } from "../requestMethods";
 
 const Success = () => {
-
-
-  return (
-
-  );
+  return <div>Yay</div>;
 };
 
 export default Success;

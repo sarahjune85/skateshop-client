@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../redux/apiUtils";
 
 const Container = styled.div`
   width: 100vw;
@@ -60,23 +64,64 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+  // const history = useHistory();
+  // const emailRef = useRef();
+  // const passwordRef = useRef();
+  // const usernameRef = useRef();
+
+  // const handleStart = () => {
+  //   setEmail(emailRef.current.value);
+  // };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    register(dispatch, { username, email, password });
+  };
+
+  // const handleFinish = async (e) => {
+  //   e.preventDefault();
+  //   setPassword(passwordRef.current.value);
+  //   setUsername(usernameRef.current.value);
+  //   try {
+  //     await axios.post("auth/register", { email, username, password });
+  //     history.push("/login");
+  //   } catch (err) {}
+  // };
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="First Name" />
-          <Input placeholder="Last Name" />
-          <Input placeholder="Username" />
-          <Input placeholder="Email" />
-          <Input placeholder="Password" />
-          <Input placeholder="Confirm Password" />
+          <Input
+            placeholder="Username"
+            type="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            placeholder="Email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            placeholder="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {/* <Input placeholder="Confirm Password" type="confirmPassword" /> */}
         </Form>
         <Agreement>
           By clicking submit, I consent to processing my data in accordance with the{" "}
           <b>PRIVACY POLICY</b>.
         </Agreement>
-        <Button>SUBMIT</Button>
+        <Button onClick={handleClick} disabled={isFetching}>
+          SUBMIT
+        </Button>
       </Wrapper>
     </Container>
   );

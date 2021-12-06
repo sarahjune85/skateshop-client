@@ -1,5 +1,9 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { mobile } from "../responsive";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/apiUtils";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
 const Container = styled.div`
   width: 100vw;
@@ -17,7 +21,7 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: white;
   border-radius: 20px;
-  text-align: end;
+  text-align: center;
   ${mobile({ width: "75%" })}
 `;
 
@@ -40,9 +44,27 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  width: 40%;
+  width: 120px;
   border: none;
   padding: 15px 20px;
+  background-color: #ff7a7ad3;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 10px;
+  &:hover {
+    background-color: #fff88fc5;
+    color: #442d2d;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
+
+const VisibilityButton = styled.button`
+  width: fit-content;
+  border: none;
   background-color: #ff7a7ad3;
   color: white;
   cursor: pointer;
@@ -58,23 +80,54 @@ const Button = styled.button`
 const Link = styled.a`
   display: flex;
   margin: 15px 0px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   text-decoration: underline;
   cursor: pointer;
   justify-content: center;
   color: #383838b8;
 `;
 
+const Error = styled.div`
+  margin-top: 10px;
+  color: red;
+`;
+
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordShown, setPasswordShown] = useState(false);
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+
+  // Password toggle handler
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="Username" />
-          <Input placeholder="Password" />
+          <Input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+          <Input
+            placeholder="Password"
+            type={passwordShown ? "text" : "password"}
+            onChange={(e) => setPassword(e.target.value)}
+          />{" "}
         </Form>
-        <Button>LOGIN</Button>
+        <VisibilityButton onClick={togglePassword}>
+          <VisibilityOutlinedIcon />
+        </VisibilityButton>
+        <Button onClick={handleClick} disabled={isFetching}>
+          LOGIN
+        </Button>
+
         <Link>Forgot your password?</Link>
         <Link>Create a new account</Link>
       </Wrapper>

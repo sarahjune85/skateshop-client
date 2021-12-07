@@ -27,24 +27,10 @@ const Left = styled.div`
   align-items: center;
 `;
 
-const SearchContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-  ${mobile({ display: "none" })}
-`;
-
-const Input = styled.input`
-  width: 10rem;
-  border: none;
-  height: 25px;
-  ${mobile({ width: "50px" })}
-`;
-
 const Center = styled.div`
   flex: 1;
   text-align: center;
+  display: contents;
 `;
 
 const Logo = styled.img`
@@ -68,10 +54,15 @@ const Right = styled.div`
   })}
 `;
 
-const MenuItem = styled.div`
-  font-size: 12px;
+const MenuItem = styled(Link)`
+  text-decoration: none;
+  color: #ff5a78;
+  font-size: 20px;
   cursor: pointer;
   margin-left: 25px;
+  &:hover {
+    color: #372e6b9e;
+  }
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
@@ -91,77 +82,46 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          <SearchContainer>
-            <Input placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: 20, padding: "5px" }} />
-          </SearchContainer>
-        </Left>
-        <Center>
           <Link to="/">
             <Logo src="/images/GNRC-wide.png" />
           </Link>
+        </Left>
+        <Center>
+          <MenuItem to="/products/skates">SKATES</MenuItem>
+          <MenuItem to="/products/parts">PARTS</MenuItem>
+          <MenuItem to="/products/apparel">APPAREL</MenuItem>
         </Center>
         <Right>
+          {user ? <span>{""}</span> : <MenuItem to="/register">REGISTER</MenuItem>}
+
           {user ? (
-            <span>{""}</span>
+            <span
+              onClick={handleLogout}
+              style={{
+                color: "#ff5a78",
+                fontSize: 20,
+                padding: "5px",
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+            >
+              LOGOUT{" "}
+              {user.others.username.charAt(0).toUpperCase() +
+                user.others.username.slice(1)}
+            </span>
           ) : (
-            <MenuItem>
-              <Link
-                to="/register"
-                style={{
-                  color: "#ff5a78",
-                  fontSize: 16,
-                  padding: "5px",
-                  textDecoration: "none",
-                }}
-              >
-                REGISTER
-              </Link>
-            </MenuItem>
+            <MenuItem to="/login">LOGIN</MenuItem>
           )}
-          <MenuItem>
-            {user ? (
-              <span
-                onClick={handleLogout}
+
+          <MenuItem to="/cart">
+            <Badge color="secondary" badgeContent={quantity}>
+              <ShoppingCartOutlined
                 style={{
-                  color: "#ff5a78",
-                  fontSize: 16,
-                  padding: "5px",
-                  textDecoration: "none",
+                  fontSize: 28,
                 }}
-              >
-                LOGOUT{" "}
-                {user.others.username.charAt(0).toUpperCase() +
-                  user.others.username.slice(1)}
-              </span>
-            ) : (
-              <Link
-                to="/login"
-                style={{
-                  color: "#ff5a78",
-                  fontSize: 16,
-                  padding: "5px",
-                  textDecoration: "none",
-                }}
-              >
-                LOGIN
-              </Link>
-            )}
+              />
+            </Badge>
           </MenuItem>
-          <Link to="/cart">
-            <MenuItem>
-              <Badge color="secondary" badgeContent={quantity}>
-                <ShoppingCartOutlined
-                  style={{
-                    color: "#ff5a7886",
-                    fontSize: 28,
-                    padding: "5px",
-                    textDecoration: "none",
-                  }}
-                />
-              </Badge>
-            </MenuItem>
-          </Link>
         </Right>
       </Wrapper>
     </Container>

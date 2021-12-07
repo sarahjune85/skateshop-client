@@ -4,12 +4,13 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { clearCart } from "../redux/cartRedux";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -151,7 +152,25 @@ const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 
 const Button = styled.button`
+  font-family: "Carter One", cursive;
+  letter-spacing: 3px;
   width: 100%;
+  color: white;
+  padding: 15px;
+  font-size: 22px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ff90a3b7;
+  cursor: pointer;
+  font-weight: 700;
+  &:hover {
+    background-color: #fff88fc5;
+    color: #442d2d;
+  }
+`;
+
+const ClearCartButton = styled.button`
+  width: 20%;
   color: white;
   padding: 15px;
   font-size: 22px;
@@ -170,6 +189,7 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -192,9 +212,10 @@ const Cart = () => {
     stripeToken && makeRequest();
   }, [stripeToken, cart, history]);
 
-  ///////TODO: clear cart function////////////
-
-  console.log(stripeToken);
+  // // reducer
+  // const clearCart = () => {
+  //   dispatch(clearCart(cart));
+  // };
 
   return (
     <Container>
@@ -211,6 +232,7 @@ const Cart = () => {
             <TopText>Shopping Bag ({cart.products.length})</TopText>
             <TopText>Your Wishlist</TopText>
           </TopTexts>
+          {/* <ClearCartButton onClick={clearCart}>Clear cart</ClearCartButton> */}
           <StripeCheckout
             name="GNRC Skates"
             image="/images/skate-logo.png"

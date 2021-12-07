@@ -64,29 +64,31 @@ const ProductList = () => {
 
   return (
     <Container>
-      <Navbar />
       <Announcement />
-      <Title>{category.toUpperCase()}</Title>
+      <Navbar />
+      <Title>{category ? category.toUpperCase() : "All Products"}</Title>
       <FilteredContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select name="color" onChange={handleFilters}>
-            <Option disabled selected="selected">
+          <Select name="color" onChange={handleFilters} defaultValue={"DEFAULT"}>
+            <option value="DEFAULT" disabled>
               Color
-            </Option>
+            </option>
             <Option>Red</Option>
             <Option>Blue</Option>
             <Option>Green</Option>
             <Option>Purple</Option>
             <Option>Yellow</Option>
+            <Option>Orange</Option>
             <Option>Pink</Option>
+            <Option>Cyan</Option>
             <Option>Teal</Option>
             <Option>Black</Option>
           </Select>
-          <Select name="size" onChange={handleFilters}>
-            <Option disabled selected="selected">
+          <Select name="size" onChange={handleFilters} defaultValue={"DEFAULT"}>
+            <option value="DEFAULT" disabled>
               Size
-            </Option>
+            </option>
             <Option>OS</Option>
             <Option>5</Option>
             <Option>6</Option>

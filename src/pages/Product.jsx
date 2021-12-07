@@ -3,14 +3,13 @@ import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@material-ui/icons";
-import { mobile } from "../responsive";
+import { mobile, halfScreen } from "../responsive";
 import { useLocation } from "react-router";
 import { useState, useEffect } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import ReactModal from "react-modal";
 
 const Container = styled.div`
   position: absolute;
@@ -144,6 +143,7 @@ const AddToCartButton = styled.button`
     background-color: #ff90a3b7;
     color: #442d2d;
   }
+  ${halfScreen({ margin: "20px" })}
 `;
 
 const BackButton = styled.button`

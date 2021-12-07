@@ -80,16 +80,18 @@ const SalesBlurb = styled.p`
 `;
 
 const Button = styled.button`
-  width: 30%;
+  font-family: "Carter One", cursive;
+  box-shadow: 3px 3px #888888;
+  width: 60%;
   height: 80px;
   margin: 0 auto;
   border: none;
-  letter-spacing: 3px;
+  letter-spacing: 8px;
   background-color: #fff88fc5;
   font-weight: bold;
-  color: #442d2d;
+  color: #ff7a7ad3;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.6rem;
   border-radius: 10px;
   &:hover {
     background-color: #ff7a7ad3;
@@ -99,6 +101,7 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 `;
+
 const Title = styled.img`
   width: 90%;
   height: 100%;

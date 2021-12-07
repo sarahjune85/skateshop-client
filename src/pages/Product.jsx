@@ -9,11 +9,21 @@ import { useState, useEffect } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import ReactModal from "react-modal";
 
-const Container = styled.div``;
-const Wrapper = styled.div`
+const Container = styled.div`
+  position: absolute;
+`;
+
+const ProductWrapper = styled.div`
+  max-width: 1000px;
+  margin: 2rem auto;
+  border-radius: 20px;
   padding: 50px;
+  align-items: center;
   display: flex;
+  box-shadow: 2px 1px 15px -3px rgba(122, 10, 10, 0.308);
   ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
@@ -23,7 +33,6 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 90vh;
   object-fit: contain;
   min-width: 100px;
   align-items: center;
@@ -37,7 +46,8 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 200;
+  color: pink;
+  font-size: xx-large;
 `;
 
 const Description = styled.p`
@@ -71,7 +81,7 @@ const SizeSelector = styled.div`
 `;
 
 const FilterTitle = styled.span`
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 200;
   margin: 10px;
 `;
@@ -88,11 +98,11 @@ const FilterColor = styled.div`
 const FilterSize = styled.select`
   margin-left: 10px;
   padding: 5px;
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 const FilterSizeOption = styled.option`
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 const AddContainer = styled.div`
@@ -100,12 +110,13 @@ const AddContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   ${mobile({ width: "100%" })}
+  margin: 30px 0px;
 `;
 
 const AmountContainer = styled.div`
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 const Amount = styled.span`
@@ -119,10 +130,27 @@ const Amount = styled.span`
   padding: 5px;
   margin: 5px;
 `;
-const Button = styled.button`
-  padding: 15px;
-  font-size: 20px;
-  border-radius: 10px;
+
+const AddToCartButton = styled.button`
+  padding: 10px 20px;
+  margin-left: 20px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff88fc5;
+  cursor: pointer;
+  font-weight: 500;
+  &:hover {
+    background-color: #ff90a3b7;
+    color: #442d2d;
+  }
+`;
+
+const BackButton = styled.button`
+  padding: 10px 20px;
+  margin-right: 30px;
+  font-size: 15px;
+  border-radius: 5px;
   border: none;
   background-color: #ff90a3b7;
   cursor: pointer;
@@ -141,6 +169,7 @@ const Product = () => {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
+  let history = useHistory();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -170,7 +199,7 @@ const Product = () => {
     <Container>
       <Announcement />
       <Navbar />
-      <Wrapper>
+      <ProductWrapper>
         <ImgContainer>
           <Image src={product.image} />
         </ImgContainer>
@@ -204,10 +233,13 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} style={{ cursor: "pointer" }} />
             </AmountContainer>
-            <Button onClick={handleClick}>Add To Cart</Button>
           </AddContainer>
+          <BackButton type="button" onClick={() => history.goBack()}>
+            Back to Product List
+          </BackButton>
+          <AddToCartButton onClick={handleClick}>Add To Cart</AddToCartButton>
         </InfoContainer>
-      </Wrapper>
+      </ProductWrapper>
 
       <Footer />
     </Container>

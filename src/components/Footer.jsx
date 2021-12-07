@@ -77,6 +77,7 @@ const ListItem = styled.li`
   width: 50%;
   margin-bottom: 10px;
   text-align: center;
+  color: #313131;
 `;
 
 const Right = styled.div`
@@ -95,6 +96,11 @@ const ContactItem = styled.div`
 
 const Payment = styled.img`
   width: 70%;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #313131;
 `;
 
 const Footer = () => {
@@ -122,15 +128,25 @@ const Footer = () => {
       <Center>
         <Title>Site Directory</Title>
         <List>
-          <ListItem>Home</ListItem>
+          <ListItem>
+            <StyledLink to="/">Home</StyledLink>
+          </ListItem>
           <ListItem>Terms</ListItem>
-          <ListItem>Skates</ListItem>
+          <ListItem>
+            <StyledLink to="/products/skates">Skates</StyledLink>
+          </ListItem>
           <ListItem>Order Tracking</ListItem>
-          <ListItem>Parts</ListItem>
+          <ListItem>
+            <StyledLink to="/products/parts">Parts</StyledLink>
+          </ListItem>
           <ListItem>My Account</ListItem>
-          <ListItem>Apparel</ListItem>
+          <ListItem>
+            <StyledLink to="/products/apparel">Apparel</StyledLink>
+          </ListItem>
           <ListItem>Wishlist</ListItem>
-          <ListItem>Cart</ListItem>
+          <ListItem>
+            <StyledLink to="/cart">Cart</StyledLink>
+          </ListItem>
         </List>
       </Center>
       <Right>

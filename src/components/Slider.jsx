@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { sliderItems } from "../data";
 import { mobile, halfScreen } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -47,6 +48,7 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
+  justify-content: space-between;
 `;
 
 const ImgContainer = styled.div`
@@ -58,29 +60,47 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: scale-down;
+  padding-left: 2rem;
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
-  padding: 50px;
+  text-align: end;
+  padding-right: 7em;
+  max-width: 40%;
 `;
 
-const Desc = styled.p`
+const SalesBlurb = styled.p`
+  font-family: "Carter One", cursive;
+  color: #442d2d96;
   margin: 50px 0px;
-  font-size: 20px;
+  font-size: 2em;
   font-weight: 500;
   letter-spacing: 3px;
 `;
 
 const Button = styled.button`
-  padding: 10px;
-  font-size: 20px;
-  background-color: transparent;
+  width: 30%;
+  height: 80px;
+  margin: 0 auto;
+  border: none;
+  letter-spacing: 3px;
+  background-color: #fff88fc5;
+  font-weight: bold;
+  color: #442d2d;
   cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #ff7a7ad3;
+    color: white;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 const Title = styled.img`
   width: 90%;
-  margin-right: 50px;
   height: 100%;
   object-fit: scale-down;
 `;
@@ -110,8 +130,10 @@ const Slider = () => {
             </ImgContainer>
             <InfoContainer>
               <Title src={item.title} />
-              <Desc>{item.desc}</Desc>
-              <Button>SHOP NOW</Button>
+              <SalesBlurb>{item.desc}</SalesBlurb>
+              <Link to={item.link}>
+                <Button>SHOP NOW!</Button>
+              </Link>
             </InfoContainer>
           </Slide>
         ))}

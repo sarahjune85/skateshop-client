@@ -7,16 +7,23 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router";
 import { useState } from "react";
 
-const Container = styled.div``;
+const Container = styled.div`
+  text-align: -webkit-center;
+`;
 
 const Title = styled.h1`
-  margin: 20px;
-  font-size: 2rem;
+  font-family: "Carter One", cursive;
+  font-size: 4.7rem;
+  color: #d0c4ff;
+  text-shadow: 3px 3px #a17affd3;
+  text-align: center;
+  margin-top: 2rem;
 `;
 
 const FilteredContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 70%;
 `;
 
 const Filter = styled.div`
@@ -25,6 +32,7 @@ const Filter = styled.div`
 `;
 
 const FilterText = styled.span`
+  color: #ff90a2;
   font-size: 20px;
   font-weight: 600;
   margin-right: 20px;
@@ -32,7 +40,8 @@ const FilterText = styled.span`
 `;
 
 const Select = styled.select`
-  padding: 10px;
+  opacity: 50%;
+  padding: 7px;
   margin-right: 20px;
   ${mobile({ margin: "10px 0px" })}
 `;
@@ -53,8 +62,6 @@ const ProductList = () => {
     });
   };
 
-  // console.log(filters);
-
   return (
     <Container>
       <Navbar />
@@ -64,7 +71,9 @@ const ProductList = () => {
         <Filter>
           <FilterText>Filter Products:</FilterText>
           <Select name="color" onChange={handleFilters}>
-            <Option disabled>Color</Option>
+            <Option disabled selected="selected">
+              Color
+            </Option>
             <Option>Red</Option>
             <Option>Blue</Option>
             <Option>Green</Option>
@@ -75,7 +84,9 @@ const ProductList = () => {
             <Option>Black</Option>
           </Select>
           <Select name="size" onChange={handleFilters}>
-            <Option disabled>Size</Option>
+            <Option disabled selected="selected">
+              Size
+            </Option>
             <Option>OS</Option>
             <Option>5</Option>
             <Option>6</Option>

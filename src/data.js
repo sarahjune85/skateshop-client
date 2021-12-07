@@ -4,6 +4,7 @@ export const sliderItems = [
     img: "/images/slider/slide-1-pic.png",
     title: "/images/slider/slide-1-heading.png",
     desc: "Get 20% off all Chaya Skates!",
+    link: "/products/skates",
     bg: "f0fafb",
   },
   {
@@ -11,6 +12,7 @@ export const sliderItems = [
     img: "/images/slider/slide-2-pic.png",
     title: "/images/slider/slide-2-heading.png",
     desc: "Carry your beloved skates in style!",
+    link: "/products/apparel",
     bg: "fbf0f4",
   },
   {
@@ -18,6 +20,7 @@ export const sliderItems = [
     img: "/images/slider/slide-3-pic.png",
     title: "/images/slider/slide-3-heading.png",
     desc: "All toe stops 50% off with the purchase of any skate!",
+    link: "/products/parts",
     bg: "f0fbf2",
   },
 ];

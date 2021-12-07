@@ -18,8 +18,9 @@ const Title = styled.img`
 
 const Desc = styled.div`
   font-size: 24px;
-  font-weight: 300;
+  font-weight: bold;
   margin-bottom: 20px;
+  color: #5a5a5a;
   ${mobile({ textAlign: "center" })}
 `;
 

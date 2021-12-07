@@ -16,7 +16,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 `;
 
 const Wrapper = styled.div`
@@ -30,8 +35,11 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: 300;
+  font-family: "Carter One", cursive;
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: #fff66d;
+  text-shadow: 3px 3px #ff7a7ad3;
 `;
 
 const Form = styled.form`
@@ -41,28 +49,34 @@ const Form = styled.form`
 
 const Input = styled.input`
   flex: 1;
+  opacity: 50%;
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  padding: 2%;
 `;
 
 const Agreement = styled.div`
-  font-size: 1rem;
+  opacity: 50%;
+  font-size: 0.8rem;
   margin: 20px 0px;
 `;
 const Button = styled.button`
   width: 40%;
+  height: 50px;
+  margin: 0 auto;
   border: none;
-  padding: 15px 20px;
   background-color: #ff7a7ad3;
   color: white;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 16px;
   border-radius: 10px;
   &:hover {
     background-color: #fff88fc5;
     color: #442d2d;
+  }
+  &:disabled {
+    cursor: not-allowed;
   }
 `;
 
@@ -91,7 +105,7 @@ const Register = () => {
       <Navbar />
       <Container>
         <Wrapper>
-          <Title>CREATE AN ACCOUNT</Title>
+          <Title>Create Account</Title>
           <Form>
             <Input
               placeholder="Username"
@@ -105,11 +119,12 @@ const Register = () => {
             />
             <Input
               placeholder="Password"
-              // type="password"
+              type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
             <Input
               placeholder="Confirm Password"
+              type="password"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </Form>
@@ -118,7 +133,7 @@ const Register = () => {
             <b>PRIVACY POLICY</b>.
           </Agreement>
           <Button onClick={handleClick} disabled={isFetching}>
-            SUBMIT
+            Submit
           </Button>
         </Wrapper>
       </Container>

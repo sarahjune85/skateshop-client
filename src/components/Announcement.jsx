@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   height: 30px;
-  background-color: #ff90a3b7;
+  background-color: #ffa4b3;
   color: white;
   display: flex;
   align-items: center;

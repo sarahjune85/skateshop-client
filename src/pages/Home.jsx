@@ -25,8 +25,8 @@ const Home = () => {
       <Announcement />
       <Navbar />
       <Slider />
+      <Categories />
       <Container>
-        <Categories />
         <BestSellers src="/images/bestsellers.png" />
         <Products />
       </Container>

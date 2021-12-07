@@ -9,7 +9,7 @@ import { clearCart } from "../redux/cartRedux";
 
 const Container = styled.div`
   height: 90px;
-  background-color: #ff90a32e;
+  background-color: #ffd5dc;
   ${mobile({ height: "90px", width: "100vw" })}
 `;
 

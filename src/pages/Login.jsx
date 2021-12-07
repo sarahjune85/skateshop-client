@@ -3,8 +3,8 @@ import { useState } from "react";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/apiUtils";
-// import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { useHistory } from "react-router-dom";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+// import { useHistory } from "react-router-dom";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 
@@ -17,9 +17,17 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 `;
 
-const Wrapper = styled.div`
+const SignInBox = styled.div`
+  position: absolute;
+  top: 25%;
   width: 25%;
   padding: 20px;
   background-color: white;
@@ -30,32 +38,40 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
+  font-family: "Carter One", cursive;
   font-size: 3rem;
   font-weight: 700;
-  color: #383838b8;
+  color: #fff66d;
+  text-shadow: 3px 3px #ff7a7ad3;
 `;
 
 const Form = styled.form`
+  position: relative;
   display: flex;
   flex-direction: column;
 `;
 
 const Input = styled.input`
-  flex: 1;
-  min-width: 40%;
-  margin: 10px 0px;
-  padding: 10px;
+  opacity: 50%;
+  display: block;
+  max-width: 100%;
+  position: relative;
+  margin-top: 10px;
+  height: 40px;
+  font-size: 15px;
+  margin-bottom: 14px;
+  padding: 0 10%;
 `;
 
 const Button = styled.button`
-  width: 120px;
+  width: 40%;
+  height: 50px;
+  margin: 0 auto;
   border: none;
-  padding: 15px 20px;
   background-color: #ff7a7ad3;
   color: white;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 16px;
   border-radius: 10px;
   &:hover {
     background-color: #fff88fc5;
@@ -66,42 +82,42 @@ const Button = styled.button`
   }
 `;
 
-const VisibilityButton = styled.button`
-  width: fit-content;
-  border: none;
-  background-color: #ff7a7ad3;
-  color: white;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 500;
-  border-radius: 10px;
-  &:hover {
-    background-color: #fff88fc5;
-    color: #442d2d;
-  }
-`;
-
 const Link = styled.a`
   display: flex;
   margin: 15px 0px;
   font-size: 0.8rem;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
   justify-content: center;
   color: #383838b8;
+  &:hover {
+    color: #442d2d;
+  }
+`;
+
+const Toggle = styled.span`
+  i:hover {
+    cursor: pointer;
+  }
+  position: absolute;
+  top: 65%;
+  right: 1.5rem;
+  color: #666;
+  z-index: 9999;
+  user-select: none;
 `;
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordShown, setPasswordShown] = useState(false);
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
-  const history = useHistory();
+  // const history = useHistory();
 
   // Password toggle handler
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown);
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
   };
 
   const handleClick = (e) => {
@@ -114,28 +130,37 @@ const Login = () => {
       <Announcement />
       <Navbar />
       <Container>
-        <Wrapper>
-          <Title>SIGN IN</Title>
+        <SignInBox>
+          <Title>Sign In</Title>
           <Form>
             <Input
               placeholder="Username"
               type="username"
               onChange={(e) => setUsername(e.target.value)}
             />
+
             <Input
               placeholder="Password"
+              name="password"
               type={passwordShown ? "text" : "password"}
               onChange={(e) => setPassword(e.target.value)}
-            />{" "}
+            />
+            <Toggle>
+              <i onClick={togglePasswordVisiblity}>
+                <VisibilityOutlinedIcon
+                  style={{ color: "#ff7a7a87", fontSize: 25, padding: "0px" }}
+                />
+              </i>
+            </Toggle>
           </Form>
-          <VisibilityButton onClick={togglePassword}>Show Password</VisibilityButton>
+
           <Button onClick={handleClick} disabled={isFetching}>
-            LOGIN
+            Submit
           </Button>
 
           <Link>Forgot your password?</Link>
           <Link>Create a new account</Link>
-        </Wrapper>
+        </SignInBox>
       </Container>
     </div>
   );

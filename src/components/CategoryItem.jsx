@@ -34,18 +34,19 @@ const Info = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3.5vw;
+  font-family: "Staatliches", cursive;
+  font-size: 7.5vw;
   color: white;
   margin-bottom: 20px;
   letter-spacing: 0.4rem;
-  ${mobile({ fontSize: "5vw" })}
-  ${halfScreen({ padding: "0px", flexDirection: "column", fontSize: "7vw" })}
+  ${mobile({ fontSize: "9vw" })}
+  ${halfScreen({ padding: "0px", flexDirection: "column", fontSize: "15vw" })}
 `;
 
 const Button = styled.button`
   border: none;
   font-weight: bold;
-  font-size: 1vw;
+  font-size: 1.6vw;
   letter-spacing: 0.4rem;
   padding: 15px;
   background-color: #fff6c4a6;
@@ -56,6 +57,7 @@ const Button = styled.button`
     color: #ffffff;
   }
   ${mobile({ fontSize: "1rem" })}
+  ${halfScreen({ fontSize: "5vw" })}
 `;
 
 const CategoryItem = ({ item }) => {

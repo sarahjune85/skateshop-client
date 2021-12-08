@@ -11,8 +11,7 @@ import Navbar from "../components/Navbar";
 const Container = styled.div`
   height: 100vh;
   background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-    url("https://i.insider.com/5ec57d733f73706a7a587499?width=1136&format=jpeg") no-repeat
-      fixed center;
+    url("https://i.imgur.com/Z5OZdDC.jpg") no-repeat fixed center;
   background-size: cover;
   display: flex;
   align-items: center;

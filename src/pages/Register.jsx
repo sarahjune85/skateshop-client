@@ -10,8 +10,7 @@ import Navbar from "../components/Navbar";
 const Container = styled.div`
   height: 100vh;
   background: linear-gradient(rgba(253, 179, 179, 0.651), rgba(255, 254, 170, 0.5)),
-    url("https://media.vogue.co.uk/photos/5f35103e3771316bf98bb858/master/w_1920,h_1280,c_limit/Playtone-108.jpg")
-      no-repeat fixed center;
+    url("https://i.imgur.com/CiRtksV.jpg") no-repeat fixed center;
   background-size: cover;
   display: flex;
   align-items: center;
